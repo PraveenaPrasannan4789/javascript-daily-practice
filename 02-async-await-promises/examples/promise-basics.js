@@ -14,3 +14,18 @@ promise.then((val)=>{
 promise.catch((val)=>{
     console.log(val)
 })
+
+//example 2
+
+const myPromise = new Promise((resolve, reject) => {
+    let success = true;
+    if (success) {
+        resolve("Done!");
+    } else {
+        reject("Error occurred");
+    }
+});
+
+myPromise
+    .then(result => console.log(result))   // Done!
+    .catch(error => console.log(error));
