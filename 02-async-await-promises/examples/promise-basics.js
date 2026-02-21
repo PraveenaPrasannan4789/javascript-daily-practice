@@ -33,6 +33,7 @@ myPromise
 
 
    // Converting Promise to Async/Await
+   //example 1
 
     // Promise
 fetch("https://api.example.com/data")
@@ -51,3 +52,47 @@ async function getData() {
     }
 }
 getData();
+
+
+//example 2
+
+function getUser() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("User fetched");
+    }, 1000);
+  });
+}
+
+function showUser() {
+  getUser()
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+showUser();
+
+
+
+function getUser() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("User fetched");
+    }, 1000);
+  });
+}
+
+async function showUser() {
+  try {
+    const result = await getUser();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+showUser();
