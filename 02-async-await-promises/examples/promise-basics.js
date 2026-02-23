@@ -108,3 +108,17 @@ showUser();
 // try {
 //   const res = await somePromise();
 // } catch (err) {}
+
+
+//Rule to Remember
+
+//Convert this:
+
+somePromise().then(res => {}).catch(err => {})
+
+//Into this:
+
+try {
+  const res = await somePromise();
+} catch (err) {}
+
