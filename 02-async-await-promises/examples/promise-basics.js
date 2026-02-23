@@ -121,3 +121,4 @@ somePromise().then(res => {}).catch(err => {})
 try {
   const res = await somePromise();
 } catch (err) {}
+
