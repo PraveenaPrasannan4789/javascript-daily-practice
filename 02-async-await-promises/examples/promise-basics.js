@@ -122,3 +122,20 @@ try {
   const res = await somePromise();
 } catch (err) {}
 
+
+function fetchUser() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const user = { name: "Praveena", role: "Developer" };
+      resolve(user);
+    }, 2000);
+  });
+}
+
+fetchUser()
+  .then((user) => {
+    console.log("User:", user);
+  })
+  .catch((err) => {
+    console.log("Error:", err);
+  });
