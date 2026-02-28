@@ -21,3 +21,9 @@ const newAscSwap =  [...data].sort((a,b)=>a-b);
 const newDescSwap = [...data].sort((a,b)=> b-a); //It creates a copy of an array.Spreads elements into a new array.
 console.log('ascending order', newAscSwap);
 console.log('descending order', newDescSwap);
+
+//tosorted
+const newAsc =  data.toSorted((a,b)=>a-b);
+const newDesc = data.toSorted((a,b)=> b-a); //It creates a copy of an array.Spreads elements into a new array.
+console.log('ascending order', newAsc);
+console.log('descending order', newDesc);
