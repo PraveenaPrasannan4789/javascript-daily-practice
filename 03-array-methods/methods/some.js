@@ -9,4 +9,5 @@ const check= oddNumbers.some((x)=>{
 const checkEvery=oddNumbers.every((x)=>{
     return x%3 ===0;
 })
-console.log('odd Number Exists',check,checkEvery)
+console.log('odd Number Exists',check);
+console.log('is all odd numbers',checkEvery);
