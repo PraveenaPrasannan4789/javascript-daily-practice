@@ -8,5 +8,25 @@ let result= numbers.find((num)=>{
 })
 console.log('number',result)
 
+
+
 //finding the user 
+let users=[
+    {
+        name:"ammu",
+        age:23
+    },
+    {
+        name:"veena",
+        age:35
+    }
+]
+let eligible = users.find((x)=>x.age<25)
+console.log('eligible',eligible)
+
+
+
 //no match scenario
+let matches=['mumbai','agra'];
+let res= matches.find((x)=>x.length>9)
+console.log('result',res)
