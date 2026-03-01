@@ -10,10 +10,6 @@ console.log(globalVar); // Accessible here too
 
 
 
-
-
-
-
 //functionScope
 
 function localScopeExample() {
@@ -23,11 +19,6 @@ function localScopeExample() {
 
 localScopeExample();
 console.log(localVar); // ❌ Error: localVar is not defined
-
-
-
-
-
 
 
 
