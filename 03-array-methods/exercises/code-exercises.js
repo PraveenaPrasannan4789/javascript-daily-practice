@@ -82,3 +82,52 @@ const sumStatement= cart.map((x)=>`${x.price} * ${x.qty}`)
 console.log('Total=',sumStatement);
 console.log('Total =',total)
 
+
+// You are given:
+
+// const users = [
+//   { id: 1, active: true },
+//   { id: 2, active: false },
+//   { id: 3, active: true }
+// ];
+
+// Find the user with id = 2
+
+// Check if all users are active
+
+// Expected Output:
+// Found User: { id: 2, active: false }
+// All Active: false
+
+const users = [
+  { id: 1, active: true },
+  { id: 2, active: false },
+  { id: 3, active: true }
+];
+
+const foundUser = users.find((user)=>user.id === 2);
+console.log('Found User:', foundUser);
+const allActive = users.every((x)=>x.active === true);
+console.log('All Active:', allActive);
+
+
+// You are given:
+
+// const numbers = [40, 5, 100, 25, 10];
+
+// Sort numbers in ascending order
+
+// Sort numbers in descending order
+
+// Do NOT use default sort. Use numeric comparator.
+
+// Expected Output:
+// Ascending: [5, 10, 25, 40, 100]
+// Descending: [100, 40, 25, 10, 5]
+
+
+const numbers = [40, 5, 100, 25, 10];
+const ascnd =  [...numbers].sort((a,b)=>a-b);
+const descnd =  [...numbers].sort((a,b)=>b-a);
+console.log('Ascending:', ascnd);
+console.log('Descending:', descnd);
