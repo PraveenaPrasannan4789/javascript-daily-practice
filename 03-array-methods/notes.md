@@ -62,3 +62,10 @@ always return undefined if we try to return.
 By default, sort() converts elements to strings
 
 So numeric sorting needs a compare function
+
+## map() returns something
+const result = [1,2,3].map(x => x + 1);
+console.log(result); // [2,3,4]
+## forEach() returns undefined
+const result = [1,2,3].forEach(x => x + 1);
+console.log(result); // undefined 
