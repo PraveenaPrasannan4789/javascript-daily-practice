@@ -82,3 +82,31 @@ const sumStatement= cart.map((x)=>`${x.price} * ${x.qty}`)
 console.log('Total=',sumStatement);
 console.log('Total =',total)
 
+
+// You are given:
+
+// const users = [
+//   { id: 1, active: true },
+//   { id: 2, active: false },
+//   { id: 3, active: true }
+// ];
+
+// Find the user with id = 2
+
+// Check if all users are active
+
+// Expected Output:
+// Found User: { id: 2, active: false }
+// All Active: false
+
+const users = [
+  { id: 1, active: true },
+  { id: 2, active: false },
+  { id: 3, active: true }
+];
+
+const foundUser = users.find((user)=>user.id === 2);
+console.log('Found User:', foundUser);
+const allActive = users.every((x)=>x.active === true);
+console.log('All Active:', allActive);
+
