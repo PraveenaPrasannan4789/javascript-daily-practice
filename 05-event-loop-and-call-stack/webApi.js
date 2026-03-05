@@ -8,10 +8,11 @@
 // DOM events
 
 // These are handled outside the JavaScript engine.
-
+console.log('start');
 setTimeout(()=>{
     console.log('hi i am in set timeout function')
-},3000)
+},3000);
+console.log('end');
 
 // setTimeout(2000) means:
 
