@@ -130,5 +130,5 @@ const products = [
   { name: "Tablet", price: 20000 }
 ];
 
-const productNames= products.filter((product)=>product.price>25000).map((product)=>product.name);
+const productNames= products.filter((product)=>product.price>50000).map((product)=>product.name);
 console.log((productNames));
