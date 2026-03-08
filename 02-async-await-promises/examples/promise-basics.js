@@ -1,141 +1,81 @@
-const promise = new Promise((resolve,reject)=>{
-const data=true;
-if(data){
-resolve('resolved promise');
-}
-else{
-    reject('rejected promise')
-}
-})
+// example 1
+//creating a promise
 
-promise.then((val)=>{
-    console.log(val)
-});
-promise.catch((val)=>{
-    console.log(val)
-})
-
-//example 2
-
-const myPromise = new Promise((resolve, reject) => {
-    let success = true;
-    if (success) {
-        resolve("Done!");
-    } else {
-        reject("Error occurred");
-    }
-});
-
-myPromise
-    .then(result => console.log(result))   // Done!
-    .catch(error => console.log(error));
-
-
-
-   // Converting Promise to Async/Await
-   //example 1
-
-    // Promise
-fetch("https://api.example.com/data")
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-
-// Async/Await
-async function getData() {
-    try {
-        const res = await fetch("https://api.example.com/data");
-        const data = await res.json();
-        console.log(data);
-    } catch(err) {
-        console.error(err);
-    }
-}
-getData();
-
-
-//example 2
-
-function getUser() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("User fetched");
-    }, 1000);
-  });
-}
-
-function showUser() {
-  getUser()
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-showUser();
-
-
-
-function getUser() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("User fetched");
-    }, 1000);
-  });
-}
-
-async function showUser() {
-  try {
-    const result = await getUser();
-    console.log(result);
-  } catch (error) {
-    console.error(error);
+const myPromise= new Promise((resolve,reject)=>{
+  console.log('inside the promise');
+  const success=true;
+  if(success){
+    resolve("done");
   }
-}
-
-showUser();
-
-// Rule to Remember
-
-// Convert this:
-
-// somePromise().then(res => {}).catch(err => {})
-
-// Into this:
-
-// try {
-//   const res = await somePromise();
-// } catch (err) {}
+  else{
+    reject("failed")
+  }
+})
+console.log('myPromise',myPromise) //Promise {'done'}
 
 
-//Rule to Remember
-
-//Convert this:
-
-somePromise().then(res => {}).catch(err => {})
-
-//Into this:
-
-try {
-  const res = await somePromise();
-} catch (err) {}
 
 
-function fetchUser() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const user = { name: "Praveena", role: "Developer" };
-      resolve(user);
-    }, 2000);
-  });
-}
+// example 2
+//creating a resolved promise use //Promise.resolve()
+const myPromise1= Promise.resolve().then(console.log('done'));
+console.log(myPromise1) //{<pending>} // because after printing done console.log() returns undefined.
 
-fetchUser()
-  .then((user) => {
-    console.log("User:", user);
-  })
-  .catch((err) => {
-    console.log("Error:", err);
-  });
+
+// Note:
+// What happens step-by-step
+
+// console.log('done') runs immediately (synchronous).
+
+// It prints:
+
+// done
+
+// console.log() returns undefined.
+
+// So the code effectively becomes:
+
+// Promise.resolve().then(undefined)
+
+// .then() receives no callback.
+
+// It still returns a new promise, which is initially pending until the microtask finishes.
+
+
+// example 3
+//creating a resolved promise use //Promise.resolve() 
+const myPromise2= Promise.resolve().then(()=>{console.log('done')})
+console.log(myPromise2);//{<pending>}
+
+
+
+// Note:
+
+// What happens
+
+// Promise.resolve() → creates a resolved promise
+
+// .then() schedules the callback in the microtask queue
+
+// console.log(myPromise2) runs before the microtask executes
+
+// So DevTools prints:
+
+// Promise { <pending> }
+// done
+
+// But after the microtask runs, the promise becomes:
+
+// Promise { fulfilled: undefined }
+
+// The value is undefined because the .then() function doesn't return anything.
+
+// example 4
+//Handling a Promise
+myPromise.then((result)=>{
+  console.log('resolved', result);
+}).catch((result)=>{
+  console.log('rejected', result);
+})
+
+
