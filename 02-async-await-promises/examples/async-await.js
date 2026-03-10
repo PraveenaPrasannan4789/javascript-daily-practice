@@ -1,15 +1,3 @@
-// async function fetchData() {
-//     try {
-//         const data = await fetch("https://api.example.com/data");
-//         const json = await data.json();
-//         console.log(json);
-//     } catch (error) {
-//         console.error("Error:", error);
-//     }
-// }
-
-// fetchData();
-
 //async function
 async function printHello(){
     return'hello'
@@ -26,3 +14,18 @@ async function fetchDataS() {
     console.log(getData);
 }
 fetchDataS();
+
+
+//try-catch-error handling
+
+async function filename() {
+    try{
+    const finalValue = await fetch("url");
+    console.log('finalValue',finalValue);
+    }
+    catch(err){
+    console.log('inside the catch block', err)
+    }
+}
+
+filename();
