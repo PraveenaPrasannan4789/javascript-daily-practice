@@ -96,3 +96,9 @@ function user(name){
 
 const cons= new user('abc');
 console.log('cons name ',cons.name)
+
+
+//this in Event Handlers
+//button.addEventListener("click", function() {
+//  console.log(this);
+//});
