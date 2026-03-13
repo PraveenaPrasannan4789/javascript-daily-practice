@@ -75,3 +75,24 @@ callFn.call(dataNewSet);
 //8. this with apply()
 
 // Same as call, but arguments are passed as an array.
+
+const userData={
+    name:'xyz',
+    age:78
+}
+
+function xPrint(arg){
+console.log('x', arg)
+}
+
+xPrint.apply(userData,[25])
+
+
+
+//this in Constructor Function
+function user(name){
+    this.name=name
+}
+
+const cons= new user('abc');
+console.log('cons name ',cons.name)
