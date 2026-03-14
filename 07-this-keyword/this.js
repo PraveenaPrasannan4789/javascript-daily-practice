@@ -87,6 +87,19 @@ console.log('x', arg)
 
 xPrint.apply(userData,[25])
 
+//this with bind()
+//bind() returns a new function with fixed this.
+function printName(){
+    console.log(this.name)
+}
+
+const person = {
+    name:"ali",
+    age: 34
+}
+
+const clFn= printName.bind(person);
+clFn();
 
 
 //this in Constructor Function
