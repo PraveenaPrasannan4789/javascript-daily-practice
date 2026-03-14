@@ -102,3 +102,15 @@ console.log('cons name ',cons.name)
 //button.addEventListener("click", function() {
 //  console.log(this);
 //});
+
+
+//Call-site determines this
+const userDataNew= {
+    userName:"user",
+    greet(){
+        console.log('in userDataNew',this.userName)
+    }
+}
+
+const user1 = userDataNew.greet;
+user1();//undefined
