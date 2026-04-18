@@ -1,115 +1,148 @@
-// Exercise 1
+// // Exercise 1
 
-// Create a promise that resolves with "Data Loaded".
-Promise.resolve("Data Loaded").then((result)=>{
-console.log(result)
-})
+// // Create a promise that resolves with "Data Loaded".
+// Promise.resolve("Data Loaded").then((result) => {
+//   console.log(result);
+// });
 
-//or
+// //or
 
-const myPromise =  new Promise((resolve)=>{
-    resolve("Data Loaded");
-})
-myPromise.then((result)=>console.log(result));
+// const myPromise = new Promise((resolve) => {
+//   resolve("Data Loaded");
+// });
+// myPromise.then((result) => console.log(result));
 
+// // Exercise 2
 
+// // Create a promise that rejects with "Network Error".
+// Promise.reject("Network Error").catch((result) => console.log(result));
 
+// //or
 
+// const myPromise2 = new Promise((resolve, reject) => {
+//   reject("Network Error");
+// });
+// myPromise2.catch((data) => {
+//   console.log(data);
+// });
 
-// Exercise 2
+// // Exercise 3
 
-// Create a promise that rejects with "Network Error".
-Promise.reject("Network Error").catch((result)=>console.log(result));
+// // Write a promise that resolves after 2 seconds using setTimeout.
 
-//or
+// const myPromise3 = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("Finished");
+//   }, 2000);
+// });
+// myPromise3.then((res) => console.log(res)); // myPromise3.then(console.log);
 
-const myPromise2= new Promise((resolve,reject)=>{
-    reject("Network Error")
-})
-myPromise2.catch((data)=>{
-    console.log(data)
-})
+// //or
 
+// Promise.resolve().then(() => {
+//   setTimeout(() => {
+//     console.log("Finished here");
+//   }, 2000);
+// });
 
+// // Exercise 4
 
+// // Use .finally() to log "Operation finished".
 
-// Exercise 3
+// const myPromise4 = new Promise((resolve, reject) => {
+//   const status = true;
+//   if (status) {
+//     resolve("done");
+//   } else {
+//     reject("rejected");
+//   }
+// });
 
-// Write a promise that resolves after 2 seconds using setTimeout.
+// myPromise4
+//   .then(console.log)
+//   .catch(console.log)
+//   .finally(() => {
+//     console.log("in finally");
+//   });
 
-const myPromise3= new Promise((resolve,reject)=>{
-   setTimeout(()=>{
-    resolve("Finished");
-   },2000)
-})
-myPromise3.then((res)=>console.log(res)) // myPromise3.then(console.log);
+// //guess the output
+// // Problem 1
+// const p = new Promise((resolve, reject) => {
+//   resolve("Success");
+// });
 
-//or
+// p.then(console.log); //success
 
-Promise.resolve().then(()=>{
-    setTimeout(()=>{
-        console.log('Finished here')
-    },2000)
-})
+// //Problem 2
+// const p2 = new Promise((resolve, reject) => {
+//   reject("Failed");
+// });
 
+// p2.catch(console.log); //Failed
 
+// // Problem 3
+// new Promise((resolve) => {
+//   setTimeout(() => resolve(100), 1000);
+// }).then(console.log); //100 after 1 second
 
+// //Problem 4
 
-// Exercise 4
+// const p3 = Promise.resolve(50);
+// p3.then((x) => x * 2).then(console.log); //100
 
-// Use .finally() to log "Operation finished".
+// //Problem 5
+// Promise.reject("Error")
+//   .catch((err) => console.log(err))
+//   .finally(() => console.log("Done")); //Error //done
 
-const myPromise4= new Promise((resolve,reject)=>{
-    const status = true;
-    if(status){
-        resolve("done")
-    }
-    else{
-        reject("rejected")
-    }
+//“Promise.resolve() returns a promise that is already resolved with a given value, while new Promise() is used to create a custom asynchronous operation where we manually control resolve and reject.”
+const checkPromise = new Promise((resolve, reject) => {
+  let status = true;
+  if (status) {
+    resolve("done");
+  } else {
+    reject("failed");
+  }
 });
 
-myPromise4.then(console.log)
-.catch(console.log)
-.finally(()=>{console.log('in finally')})
+checkPromise.then((val) => console.log(val)).catch((err) => console.log(err));
 
+//equivalent to
+Promise.resolve("done").then((val) => console.log(val));
 
+//important
+const getResults = (arrFn) => {
+  return Promise.all(arrFn.map((task) => task()));
+};
 
+getResults([
+  () => Promise.resolve("1st function"),
+  () => Promise.resolve("2nd function"),
+]).then((res) => console.log(res));
 
-//guess the output
-// Problem 1
-const p = new Promise((resolve, reject) => {
-    resolve("Success");
-});
+//alternative
 
-p.then(console.log);  //success
+const getResultsNew = (tasksList) => {
+  return new Promise((resolve, reject) => {
+    let completed = 0;
+    let resArray = [];
+    tasksList.forEach((task, i) => {
+      task()
+        .then((res) => {
+          resArray[i] = res;
+          completed++;
+          if (completed !== tasksList.length) {
+            return resolve(resArray);
+          }
+        })
+        .catch((err) => {
+          return resolve(err);
+        });
+    });
+  });
+};
 
-
-//Problem 2
-const p2= new Promise((resolve, reject) => {
-    reject("Failed");
-});
-
-p2.catch(console.log); //Failed
-
-
-// Problem 3
-new Promise(resolve => {
-    setTimeout(() => resolve(100), 1000);
-}).then(console.log); //100 after 1 second
-
-
-//Problem 4
-
-const p3 = Promise.resolve(50);
-p3.then(x => x * 2)
- .then(console.log); //100
-
-
- //Problem 5
-Promise.reject("Error")
-    .catch(err => console.log(err))
-    .finally(() => console.log("Done"));//Error //done
-
-
- 
+getResults([
+  () => Promise.resolve("1st function"),
+  () => Promise.resolve("2nd function"),
+]).then((res) => console.log(res));
