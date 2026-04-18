@@ -131,7 +131,7 @@ const getResultsNew = (tasksList) => {
         .then((res) => {
           resArray[i] = res;
           completed++;
-          if (completed !== tasksList.length) {
+          if (completed === tasksList.length) {
             return resolve(resArray);
           }
         })
