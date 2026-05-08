@@ -48,3 +48,10 @@ let newVar = 20;
 
 console.log(newVar1); // ReferenceError: Cannot access 'newVar' before initialization
 const newVar1 = 30;
+
+// function hoisting 
+greet();
+
+function greet() {
+  console.log("Hello");
+}
